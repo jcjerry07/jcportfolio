@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jacy Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --text: #ffffff;
+      --card-bg: rgba(255,255,255,0.15);
+      --neon: #00ffff;
+      --glass-border: rgba(255,255,255,0.3);
+    }
+
+    /* 🌞 Light Mode Theme */
+    body.light {
+      --bg: #f2ffff;
+      --text: #001f1f;
+      --card-bg: rgba(0,0,0,0.1);
+      --glass-border: rgba(0,255,255,0.4);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: 0.4s ease-in-out;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 40px;
+      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.25);
+      z-index: 1000;
+      border-bottom: 1px solid var(--glass-border);
+      font-weight: 600;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: var(--text);
+      position: relative;
+      transition: 0.3s;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--neon);
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: var(--neon);
+      transition: 0.3s;
+    }
+
+    nav a:hover::after, nav a.active::after {
+      width: 100%;
+    }
+
+    /* 🌗 Dark / Light Mode Button */
+    .mode-toggle {
+      cursor: pointer;
+      padding: 10px 20px;
+      border: 2px solid var(--neon);
+      border-radius: 25px;
+      color: var(--neon);
+      transition: .3s;
+      font-weight: 600;
+    }
+
+    .mode-toggle:hover {
+      background: var(--neon);
+      color: #000;
+      box-shadow: 0 0 20px var(--neon);
+    }
+
+    .hero {
+      height: 100vh;
+      background-image: url('hero.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      text-align: center;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      font-size: 4rem;
+      animation: fadeUp 1.2s ease-out;
+      text-shadow: 0 0 20px var(--neon);
+      font-weight: 700;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-section {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+      padding: 80px 10%;
+    }
+
+    .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .glass-card {
+      backdrop-filter: blur(12px);
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 30px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      margin: 20px 0;
+      font-size: 1.1rem;
+      transition: 0.4s ease;
+    }
+
+    .neon-btn {
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      color: var(--neon);
+      border: 2px solid var(--neon);
+      background: transparent;
+      cursor: pointer;
+      transition: 0.3s;
+      display: inline-block;
+      text-decoration: none;
+      text-align: center;
+      font-weight: 600;
+      margin-right: 10px;
+    }
+
+    .neon-btn:hover {
+      background: var(--neon);
+      color: black;
+      box-shadow: 0 0 20px var(--neon), 0 0 40px var(--neon);
+    }
+
+    /* ⭐ LinkedIn Icon ⭐ */
+    .linkedin-icon img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: 2px solid var(--neon);
+      padding: 5px;
+      background: rgba(0,255,255,0.1);
+      transition: .3s;
+      vertical-align: middle;
+      margin-left: 10px;
+    }
+
+    .linkedin-icon img:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 25px var(--neon);
+      background: var(--neon);
+    }
+
+    .resume-card {
+      backdrop-filter: blur(15px);
+      background: var(--card-bg);
+      border-radius: 25px;
+      border: 1px solid var(--neon);
+      box-shadow: 0 0 35px var(--neon);
+      padding: 20px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">Jacy</div>
+
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <!-- 🌗 Dark/Light Mode Button -->
+    <div class="mode-toggle" onclick="toggleTheme()">Mode</div>
+  </nav>
+
+  <section class="hero reveal">
+    <div class="hero-content">
+      Welcome to My Portfolio<br>
+      <span style="font-size:1.5rem; animation:bounce 2s infinite;">Scroll Down ⬇️</span>
+    </div>
+  </section>
+
+  <section class="fade-section reveal" id="about">
+    <div class="glass-card">
+      <h2>About Me</h2>
+      <p>I am Jacy, a content creator, video editor, and designer.</p>
+    </div>
+  </section>
+
+  <section class="fade-section reveal" id="skills">
+    <div class="glass-card">
+      <h2>Skills & Tools</h2>
+      <ul>
+        <li><strong>Video Editing:</strong> Premiere Pro, DaVinci Resolve</li>
+        <li><strong>Graphic Design:</strong> Canva, Photoshop</li>
+        <li><strong>Frontend Dev:</strong> HTML, CSS, JavaScript</li>
+        <li><strong>AI Tools:</strong> ChatGPT, MidJourney</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="fade-section reveal" id="projects">
+    <div class="glass-card">
+      <h2>Projects & Video Gallery</h2>
+
+      <a href="https://drive.google.com/drive/folders/10YT1gl_X30JnO55AT2ZZfED_IBtBLlWt?usp=sharing"
+         target="_blank" class="neon-btn">Edited Videos</a>
+
+      <a href="https://www.youtube.com/channel/UC_BulwP4EGNJdFYD9qXH5PQ"
+         target="_blank" class="neon-btn">
+         YouTube: <strong>Jacy Curious</strong>
+      </a>
+    </div>
+  </section>
+
+  <section class="fade-section reveal" id="resume">
+    <div class="resume-card">
+      <h2>My Resume</h2>
+      <iframe src="https://drive.google.com/file/d/141wJys_NjcUvJcxwPaAUza-PvRfv8l9F/preview"
+              width="100%" height="600px" style="border:none;border-radius:12px;"></iframe>
+
+      <a href="https://drive.google.com/file/d/141wJys_NjcUvJcxwPaAUza-PvRfv8l9F/view?usp=drive_link"
+         target="_blank" class="neon-btn">Download Resume</a>
+    </div>
+  </section>
+
+  <section class="fade-section reveal" id="contact">
+    <div class="glass-card">
+      <h2>Contact Me</h2>
+      <p>Email: jaryjacy07@gmail.com</p>
+      <p>Mobile: +91 7535919606</p>
+
+      <a href="mailto:jaryjacy07@gmail.com" class="neon-btn">Hire Me</a>
+
+      <!-- ⭐ Perfectly Aligned LinkedIn Button -->
+      <a href="https://www.linkedin.com/in/jigyashjc" target="_blank" class="linkedin-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png">
+      </a>
+
+    </div>
+  </section>
+
+  <script>
+    /* Reveal Animation */
+    const sections=document.querySelectorAll('.fade-section');
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    },{threshold:0.2});
+    sections.forEach(sec=>observer.observe(sec));
+
+    /* 🌗 Theme Toggle */
+    function toggleTheme(){
+      document.body.classList.toggle("light");
+      localStorage.setItem("theme", document.body.classList.contains("light") ? "light" : "dark");
+    }
+
+    /* Load saved mode */
+    if(localStorage.getItem("theme")==="light"){
+      document.body.classList.add("light");
+    }
+  </script>
+
+</body>
+</html>
